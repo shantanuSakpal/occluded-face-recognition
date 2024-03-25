@@ -7,7 +7,7 @@ You can also add new users manually by adding a photo in the images folder.
 
 <pre><code>python main.py --input webcam</code></pre>
 
-![Results](https://github.com/juan-csv/face_recognition_occlusion/blob/master/results/result.gif)
+![Results](https://github.com/shantanuSakpal/occluded-face-recognition/blob/main/results/result.gif)
 
 if you don't want to run it with the webcam use
 
