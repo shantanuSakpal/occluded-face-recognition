@@ -5,7 +5,7 @@ import numpy as np
 import cv2
 
 
-#------------------------ Inicia el flujo principal ----------------------------
+#------------------------ Start the main flow ----------------------------
 class rec():
     def __init__(self):
         '''

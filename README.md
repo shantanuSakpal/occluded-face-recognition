@@ -7,7 +7,7 @@ You can also add new users manually by adding a photo in the images folder.
 
 <pre><code>python main.py --input webcam</code></pre>
 
-![Results](https://github.com/shantanuSakpal/occluded-face-recognition/blob/main/results/result.gif)
+//add gif here
 
 if you don't want to run it with the webcam use
 
@@ -31,3 +31,13 @@ You can add new users to the faces database simply by adding the person's photo 
 
 3. Install the dependencies: `pip install -r requirements.txt`
 4. Start the backend server: `python app.py`
+
+### To Do
+
+1. how does og face_recognition work.(algorithm) - uday
+2. how to show that it doesnt work for occluded face. -uday
+3. how does ours work.(algorithm) -shantanu
+4. how to show that ours work for occluded face. -shantanu
+5. future use case:
+   a. synthecial put a mask on wanted people faces. and give it to our model.
+   b. remove occlusion from the face. if unknow person using silp / gan - divyesh

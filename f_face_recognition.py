@@ -8,7 +8,7 @@ face_detector = f_face_detector_occlusion.detector_face_occlusion()
 def detect_face(image):
     '''
     Input: imagen numpy.ndarray, shape=(W,H,3)
-    Output: [(y0,x1,y1,x0),(y0,x1,y1,x0),...,(y0,x1,y1,x0)] ,cada tupla representa un rostro detectado
+    Output: [(y0,x1,y1,x0),(y0,x1,y1,x0),...,(y0,x1,y1,x0)] ,each tuple represents a detected face
     si no se detecta nada  --> Output: []
 
     antes -->    box_faces = face_recognition.face_locations(image)
@@ -24,10 +24,10 @@ def detect_face(image):
 def get_features(img,box):
     '''
     Input:
-        -img:imagen numpy.ndarray, shape=(W,H,3)
-        -box: [(y0,x1,y1,x0),(y0,x1,y1,x0),...,(y0,x1,y1,x0)] ,cada tupla representa un rostro detectado
+        -img:numpy.ndarray image, shape=(W,H,3)
+        -box: [(y0,x1,y1,x0),(y0,x1,y1,x0),...,(y0,x1,y1,x0)] ,each tuple represents a detected face
     Output:
-        -features: [array,array,...,array] , cada array representa las caracteristicas de un rostro 
+        -features: [array,array,...,array] , each array represents the characteristics of a face
     '''
     features = face_recognition.face_encodings(img,box)
     return features
@@ -35,11 +35,11 @@ def get_features(img,box):
 def compare_faces(face_encodings,db_features,db_names):
     '''
     Input:
-        db_features = [array,array,...,array] , cada array representa las caracteristicas de un rostro 
-        db_names =  array(array,array,...,array) cada array representa las caracteriticas de un usuario
+        db_features = [array,array,...,array] , Each array represents the characteristics of a face 
+        db_names =  array(array,array,...,array) Each array represents the characteristics of a user
     Output:
-        -match_name: ['name', 'unknow'] lista con los nombres que hizo match
-        si no hace match pero hay una persona devuelve 'unknow'
+        -match_name: ['name', 'unknown'] list of names that matched
+        If there is no match but there is a person, it returns 'unknown'
     '''
     match_name = []
     names_temp = db_names
