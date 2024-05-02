@@ -7,12 +7,14 @@ import f_face_detector_occlusion
 face_detector = f_face_detector_occlusion.detector_face_occlusion()
 def detect_face(image):
     '''
-    Input: imagen numpy.ndarray, shape=(W,H,3)
+    Input: image numpy.ndarray, shape=(W,H,3)
     Output: [(y0,x1,y1,x0),(y0,x1,y1,x0),...,(y0,x1,y1,x0)] ,each tuple represents a detected face
-    si no se detecta nada  --> Output: []
+    If nothing is detected  --> Output: []
 
-    antes -->    box_faces = face_recognition.face_locations(image)
+    before -->    box_faces = face_recognition.face_locations(image)
     '''
+    
+    #This novel method returns a list of bounding boxes, where each bounding box represents a detected face.
     list_box = face_detector.detect_face(image)
     try:
         box_faces = [(box[1],box[2],box[3],box[0]) for box in list_box.astype("int")]
@@ -23,17 +25,22 @@ def detect_face(image):
 
 def get_features(img,box):
     '''
+    The get_features function  takes an image and a list of bounding boxes as input. Each bounding box in the list represents a detected face in the image. The function then uses the face_encodings function from the face_recognition library to extract the features of each detected face. These features are returned as a list of arrays, where each array represents the features of a face.
+    
     Input:
-        -img:numpy.ndarray image, shape=(W,H,3)
-        -box: [(y0,x1,y1,x0),(y0,x1,y1,x0),...,(y0,x1,y1,x0)] ,each tuple represents a detected face
+        -img: numpy.ndarray image, shape=(W,H,3)
+        -box: [(y0,x1,y1,x0),(y0,x1,y1,x0),...,(y0,x1,y1,x0)], each tuple represents a detected face
     Output:
-        -features: [array,array,...,array] , each array represents the characteristics of a face
+        -features: [array,array,...,array], each array represents the features of a face
+    
     '''
     features = face_recognition.face_encodings(img,box)
     return features
 
 def compare_faces(face_encodings,db_features,db_names):
     '''
+    The compare_faces function is used to compare a list of face features with a database of known face features.
+    
     Input:
         db_features = [array,array,...,array] , Each array represents the characteristics of a face 
         db_names =  array(array,array,...,array) Each array represents the characteristics of a user

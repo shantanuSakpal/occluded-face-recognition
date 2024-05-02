@@ -53,7 +53,7 @@ class detector_face_occlusion():
             box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
             # confidence range --> [0-1]
             confidence = detections[0,0,i,2]
-            if confidence >=0.6:
+            if confidence >=0.8:
                 if len(list_box) == 0:
                     list_box = np.expand_dims(box, axis=0)
                 else:

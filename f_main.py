@@ -38,18 +38,21 @@ class rec():
                     'names':[]}
                 return res
             else:
+                #if face not in database
                 if not self.db_names:
                     res = {
                         'status':'ok',
                         'faces':box_faces,
-                        'names':['unknow']*len(box_faces)}
+                        'names':['unknown']*len(box_faces)}
                     return res
                 else:
-                    # (continua) extraer features
-                    actual_features = rec_face.get_features(im,box_faces)
-                    # comparar actual_features con las que estan almacenadas en la base de datos
+                    # (continues) extract features
+
+                    actual_features = rec_face.     get_features(im,box_faces)
+                    # compare actual_features with those stored in the database                  
+
                     match_names = rec_face.compare_faces(actual_features,self.db_features,self.db_names)
-                    # guardar
+                    # save
                     res = {
                         'status':'ok',
                         'faces':box_faces,

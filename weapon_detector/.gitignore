@@ -1,0 +1,10 @@
+.DS_Store
+.env
+.weights
+.env
+
+venv
+weights
+
+utils/*
+test.py

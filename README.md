@@ -3,16 +3,6 @@
 This face recognition implementation is capable of recognizing faces with a certain level of occlusion, this includes faces wearing masks.
 You can also add new users manually by adding a photo in the images folder.
 
-# How to run:
-
-<pre><code>python main.py --input webcam</code></pre>
-
-//add gif here
-
-if you don't want to run it with the webcam use
-
-<pre><code>python main.py --input image --path_im test_image.jpeg</code></pre>
-
 # Add new faces to the database (facial recognition)
 
 You can add new users to the faces database simply by adding the person's photo in format .jpg in the **images** folder, for the registry to work correctly, only the person of interest should appear in the photo.
@@ -21,7 +11,7 @@ You can add new users to the faces database simply by adding the person's photo 
 
 - **Face recognition:** https://github.com/ageitgey/face_recognition
 
-# How to run the model
+# How to set up the environment:
 
 1. Create a virtual environment: `python -m venv venv`
 2. Activate the virtual environment:
@@ -30,7 +20,16 @@ You can add new users to the faces database simply by adding the person's photo 
 - For macOS/Linux: `source venv/bin/activate`
 
 3. Install the dependencies: `pip install -r requirements.txt`
-4. Start the backend server: `python app.py`
+
+# How to run:
+
+To run with webcam, use:
+
+<pre><code>python main.py --input webcam</code></pre>
+
+if you don't want to run it with the webcam use
+
+<pre><code>python main.py --input image --path_im test_image.jpg</code></pre>
 
 ### To Do
 
@@ -41,3 +40,12 @@ You can add new users to the faces database simply by adding the person's photo 
 5. future use case:
    a. synthecial put a mask on wanted people faces. and give it to our model.
    b. remove occlusion from the face. if unknow person using silp / gan - divyesh
+
+So basically this whole project is to detect masked/occluded faces, once we detect masked/occluded faces (mark them with bounding boxes), we can find the features of the face.
+Once we have the features, we can:
+
+1. Remove the mask/occlusion from the face.
+2. Recognize face with higher accuracy.
+
+We will be focusing on second point.
+This is the main idea of the project.

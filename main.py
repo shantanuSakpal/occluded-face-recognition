@@ -29,9 +29,23 @@ def main(parse):
 
     elif parse.input == "image":
             frame = cv2.imread(parse.path_im)
+            if frame is None:
+                print("Error: Could not read the image file.")
+            else:
+                frame = imutils.resize(frame, width=720)
             frame = imutils.resize(frame, width=720)
+            
+           
+            #recognize_face calculates the facial features and compares them with the database
             res = recognizer.recognize_face(frame)
             print(res)
+             #res = {
+                # 'status':'ok',
+                # 'faces':box_faces,
+                # 'names':match_names
+                # }
+                
+            #bounding_box draws the bounding box and the name of the person recognized
             frame = f_main.bounding_box(frame,res["faces"],res["names"])
             cv2.imshow("face_recognition",frame)
             cv2.imwrite("test.jpg",frame)
