@@ -3,7 +3,7 @@ import traceback
 import f_storage as st
 import numpy as np
 import cv2
-
+import face_recognition
 
 #------------------------ Start the main flow ----------------------------
 class rec():
@@ -29,6 +29,7 @@ class rec():
         try:
             # detect face 
             box_faces = rec_face.detect_face(im)
+            # print("box faces",box_faces)
 
             # conditional in case no face is detected
             if  not box_faces:
@@ -38,7 +39,7 @@ class rec():
                     'names':[]}
                 return res
             else:
-                #if face not in database
+                #if no database
                 if not self.db_names:
                     res = {
                         'status':'ok',
@@ -48,7 +49,7 @@ class rec():
                 else:
                     # (continues) extract features
 
-                    actual_features = rec_face.     get_features(im,box_faces)
+                    actual_features = rec_face.get_features(im,box_faces)
                     # compare actual_features with those stored in the database                  
 
                     match_names = rec_face.compare_faces(actual_features,self.db_features,self.db_names)
@@ -66,6 +67,46 @@ class rec():
                 'names':[]}
             return res
 
+    def recognize_face_normal(self,im):
+        try:
+            # detect face 
+            box_faces = face_recognition.face_locations(im)
+            # print("box faces",box_faces)
+            # conditional in case no face is detected
+            if  not box_faces:
+                res = {
+                    'status':'ok',
+                    'faces':[],
+                    'names':[]}
+                return res
+            else:
+                #if no database
+                if not self.db_names:
+                    res = {
+                        'status':'ok',
+                        'faces':box_faces,
+                        'names':['unknown']*len(box_faces)}
+                    return res
+                else:
+                    # (continues) extract features
+
+                    actual_features = rec_face.get_features(im,box_faces)
+                    # compare actual_features with those stored in the database                  
+
+                    match_names = rec_face.compare_faces(actual_features,self.db_features,self.db_names)
+                    # save
+                    res = {
+                        'status':'ok',
+                        'faces':box_faces,
+                        'names':match_names}
+                    return res
+        except Exception as ex:
+            error = ''.join(traceback.format_exception(etype=type(ex), value=ex, tb=ex.__traceback__))
+            res = {
+                'status':'error: ' + str(error),
+                'faces':[],
+                'names':[]}
+            return res
 
 def bounding_box(img,box,match_name=[]):
     for i in np.arange(len(box)):
@@ -95,4 +136,4 @@ if __name__ == "__main__":
     im = bounding_box(im,res["faces"],res["names"])
     cv2.imshow("face recogntion", im)
     cv2.waitKey(0)
-    print(res)
+    # print(res)

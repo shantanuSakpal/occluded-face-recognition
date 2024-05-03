@@ -6,4 +6,4 @@ path_images = "images"
 threshold alto --> menos restrictivo
 threshold bajo --> mas restrictivo
 """
-threshold = 0.8
+threshold = 0.9

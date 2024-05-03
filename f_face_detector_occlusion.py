@@ -18,9 +18,9 @@ Note: returns the bounding_box where it found faces
 
 class detector_face_occlusion():
     def __init__(self):
-        # arquitectura de la red
+        # network architecture
         prototxt_path = "face_detector/deploy.prototxt"
-        # pesos de la red
+        # weights of the model
         caffemodel_path = "face_detector/weights.caffemodel"
         self.detector = cv2.dnn.readNetFromCaffe(prototxt_path, caffemodel_path)
 
@@ -28,9 +28,9 @@ class detector_face_occlusion():
         (h, w) = image.shape[:2]
         # I prepare the image to enter the model
         blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 1.0, (300, 300), (104.0, 177.0, 123.0))
-        # ingreso la imagen al modelo
+        # I input the image into the model
         self.detector.setInput(blob)
-        # propago la imagen hacia adelante del modelo
+        # I propagate the image forward through the model
         detections = self.detector.forward()
         """"
         detections, has 4 columns that are:

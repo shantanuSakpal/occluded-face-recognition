@@ -14,7 +14,7 @@ def detect_face(image):
     before -->    box_faces = face_recognition.face_locations(image)
     '''
     
-    #This novel method returns a list of bounding boxes, where each bounding box represents a detected face.
+    #This novel method detect_face returns a list of bounding boxes, where each bounding box represents a detected face.
     list_box = face_detector.detect_face(image)
     try:
         box_faces = [(box[1],box[2],box[3],box[0]) for box in list_box.astype("int")]

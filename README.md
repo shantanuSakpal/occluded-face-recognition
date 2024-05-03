@@ -27,9 +27,13 @@ To run with webcam, use:
 
 <pre><code>python main.py --input webcam</code></pre>
 
-if you don't want to run it with the webcam use
+To run with a single image use:
 
 <pre><code>python main.py --input image --path_im test_image.jpg</code></pre>
+
+To run with a folder containing test images use:
+
+<pre><code>python main.py --input image --folder_path ./test_images</code></pre>
 
 ### To Do
 
@@ -49,3 +53,6 @@ Once we have the features, we can:
 
 We will be focusing on second point.
 This is the main idea of the project.
+
+now, the og face_recognition library is not able to detect occluded faces, so we will be using our own model to detect occluded faces.
+and then we will make bounding boxes around the occluded faces and then we will use the og face_recognition library to detect the faces, by providing it our bounding boxes.
