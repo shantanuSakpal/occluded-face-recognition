@@ -86,8 +86,8 @@ def main(parse):
                     frame = cv2.imread(image_path)
                     if frame is not None:
                         frame = imutils.resize(frame, width=720)
-                        normal_face_recognition(frame,index)
-                        # our_face_recognition(frame, index)
+                        # normal_face_recognition(frame,index)
+                        our_face_recognition(frame, index)
                         index += 1
 
 if __name__ == "__main__":

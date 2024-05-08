@@ -56,3 +56,8 @@ This is the main idea of the project.
 
 now, the og face_recognition library is not able to detect occluded faces, so we will be using our own model to detect occluded faces.
 and then we will make bounding boxes around the occluded faces and then we will use the og face_recognition library to detect the faces, by providing it our bounding boxes.
+
+Precision: The fraction of detected faces that are correctly identified as faces.
+Recall: The fraction of actual faces that are correctly detected.
+F1-score: The harmonic mean of precision and recall, providing a balanced measure of performance.
+Intersection over Union (IoU): A measure of how well the predicted bounding boxes overlap with the ground truth bounding boxes.
